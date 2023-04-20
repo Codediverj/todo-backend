@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "Tasks" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" TEXT NOT NULL,
+    "complete" BOOLEAN NOT NULL,
+    "goalId" INTEGER NOT NULL,
+    CONSTRAINT "Tasks_goalId_fkey" FOREIGN KEY ("goalId") REFERENCES "Goals" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);

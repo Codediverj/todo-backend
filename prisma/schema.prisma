@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Goals {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  targetDate  DateTime?
+  complete    Boolean
+
+  // Relationships
+  tasks Tasks[]
+}
+
+model Tasks {
+  id       Int     @id @default(autoincrement())
+  title    String
+  complete Boolean
+
+  // Relationships
+  goalId Int
+  goal   Goals @relation(fields: [goalId], references: [id])
+}
